@@ -19,7 +19,7 @@ class graph
 			res+=i + "=>" + g[i] + "\n";
 		return res;
 	}
-	void addEdge(int u,int v)   // add edge in a graph
+	void addEdge(int u,int v)   // add node to a graph
 	{
 		g[u].add(0,v);
 		g[v].add(0,u);
@@ -27,7 +27,7 @@ class graph
 	
 	boolean visited[];
 	boolean visited1[];
-	public void dfs(int start)    // print the depth first search traversal
+	public void dfs(int start)    // print the depth first search traversal of graph
 	{
 		Stack<Integer> stk=new Stack<>();
 		stk.push(start);
@@ -48,7 +48,26 @@ class graph
 	}
 	
 	
-	
+	public void bfs(int start)     // print the breadth first search traversal of graph
+	{
+		Queue<Integer> q=new LinkedList<>();
+		q.add(start);
+		visited1[start]=true;
+		while(!q.isEmpty())
+		{
+			Integer node=q.remove();
+			System.out.print(node + " ");
+			List<Integer> l=g[node];
+			for(Integer i:l)
+			{
+				if(!visited1[i])
+				{
+					q.add(i);
+					visited1[i]=true;
+				}
+			}
+		}
+	}
 	public void isConnected(int u,int v)    //check if two nodes are connected or not
 	{
 		int flag=0;
